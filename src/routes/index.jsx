@@ -16,6 +16,7 @@ export default function defaultRoutes() {
       <MyRoute exact path="/login/" component={Login} />
       <MyRoute exact path="/my-info/" component={MyInfo} />
       <MyRoute exact path="/my-orders/" component={MyOrders} />
+      <MyRoute exact path="/product" component={Product} />
       <MyRoute exact path="/product/:id/edit" component={Product} />
       <MyRoute path="*" component={Home} />
     </Switch>

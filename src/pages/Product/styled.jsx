@@ -13,12 +13,12 @@ export const ProductContainer = styled(Container)`
 export const ProductSection = styled(Section)`
   display: flex;
   flex-direction: column;
+
   padding: 40px;
   border-radius: 20px;
   background: linear-gradient(135deg, rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.5));
   backdrop-filter: blur(5px);
   box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.4);
-
   max-height: 80vh;
 
   h1 {
@@ -36,6 +36,7 @@ export const Form = styled.form`
     align-items: center;
     width: 200px;
     height: 200px;
+    margin-right: 40px;
     border-radius: 50%;
     box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
     overflow: hidden;
@@ -43,7 +44,6 @@ export const Form = styled.form`
     & img {
       width: 200px;
       height: 200px;
-      cursor: pointer;
       transition: filter 0.1s linear;
 
       &:hover {
@@ -51,9 +51,14 @@ export const Form = styled.form`
       }
     }
 
-    &:has(> svg) {
-      border: 1px solid white;
+    label {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      height: 100%;
       background-color: black;
+      cursor: pointer;
     }
 
     svg {
@@ -74,7 +79,6 @@ export const Form = styled.form`
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-left: 40px;
 
       input[type='text'],
       input[type='number'],
@@ -108,11 +112,18 @@ export const Form = styled.form`
         background: linear-gradient(
           135deg,
           rgba(255, 0, 0, 1),
-          rgba(0, 0, 0, 0.4)
+          rgba(123, 0, 0, 0.4)
         );
+        box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
         font-size: 1em;
         font-weight: bold;
         letter-spacing: 1px;
+        transition: filter 0.07s ease-in, box-shadow 0.07s ease-in;
+
+        &:active {
+          filter: brightness(130%);
+          box-shadow: none;
+        }
       }
     }
 

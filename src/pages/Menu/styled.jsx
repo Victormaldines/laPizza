@@ -11,6 +11,30 @@ export const PizzaSection = styled(Section)`
   flex-direction: column;
   border-radius: 20px;
   background-color: rgba(0, 0, 0, 0.7);
+
+  .add-pizza a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .button {
+    font-weight: bold;
+    color: white;
+    border: 1px solid rgb(0, 255, 0);
+    background: linear-gradient(135deg, #018e42, rgb(0, 200, 0));
+
+    svg {
+      font-size: 0.8em;
+      margin-right: 10px;
+    }
+  }
+
+  .button:hover {
+    letter-spacing: initial;
+    background: linear-gradient(135deg, #018e42, rgb(0, 230, 0));
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+  }
 `;
 
 export const Title = styled.span`
@@ -99,8 +123,9 @@ export const Info = styled(Section)`
     align-items: center;
     padding: 12px 20px;
     border-radius: 5px;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
     cursor: pointer;
-    transition: filter 0.07s ease-in;
+    transition: filter 0.07s ease-in, box-shadow 0.07s ease-in;
 
     &.plus-button {
       color: white;
@@ -108,7 +133,7 @@ export const Info = styled(Section)`
       background: linear-gradient(135deg, #018e42, rgb(0, 255, 0));
     }
 
-    &.minus-button {
+    &.remove-button {
       margin-left: 10px;
       color: white;
       border: 1px solid rgb(255, 0, 0);
@@ -120,8 +145,20 @@ export const Info = styled(Section)`
       background: linear-gradient(135deg, #8e8c01, rgb(255, 255, 0));
     }
 
+    &.alert-button {
+      display: none;
+      margin-left: 10px;
+      border: 1px solid rgb(255, 123, 0);
+      background: linear-gradient(135deg, #8e4501, rgb(255, 123, 0));
+    }
+
     &:hover {
       filter: brightness(110%);
+    }
+
+    &:active {
+      filter: brightness(130%);
+      box-shadow: none;
     }
   }
 `;
