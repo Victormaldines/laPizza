@@ -10,6 +10,8 @@ import axios from '../../services/axios';
 
 export default function MyOrder() {
   const user = useSelector((state) => state.auth.user);
+  const mano = useSelector((state) => state.cart);
+  console.log(mano, user);
 
   const products = useRef([]);
   const prevElement = useRef();
@@ -23,7 +25,7 @@ export default function MyOrder() {
       setOrders(response.data['Orders']);
     }
     getData();
-  }, [user, products]);
+  }, [user]);
 
   const getProducts = (e, items, orderIndex) => {
     products.current = [];

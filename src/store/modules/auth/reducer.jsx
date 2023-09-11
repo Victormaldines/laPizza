@@ -29,13 +29,14 @@ export default function (state = initialState, action) {
     }
 
     case types.LOGIN_FAILURE: {
+      console.log('j red');
       delete axios.defaults.headers.Authorization; // deleta o token de autenticação do usuário no header das reqs em caso de login_failure
       const newState = { ...initialState };
       return newState;
     }
 
     default: {
-      return initialState;
+      return state;
     }
   }
 }

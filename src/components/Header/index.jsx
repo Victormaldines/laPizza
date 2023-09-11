@@ -45,7 +45,7 @@ export const Header = () => {
                 ) : (
                   <>
                     <li>
-                      <Link className="list-link" to="/menu">
+                      <Link className="list-link" to="/cart">
                         <FaShoppingCart /> Carrinho
                       </Link>
                     </li>

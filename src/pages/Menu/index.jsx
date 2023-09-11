@@ -9,6 +9,7 @@ import {
 } from 'react-icons/fa';
 import { formatPrice } from '../../utils/formatPrice';
 import { Link } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 
 import {
   MenuContainer,
@@ -19,11 +20,15 @@ import {
   Image,
   Info,
 } from './styled';
+import * as actions from '../../store/modules/cart/action';
 import axios from '../../services/axios';
 
 export default function Menu() {
+  const dispatch = useDispatch();
+
   const isAdmin = useSelector((state) => state.auth.isAdmin);
   const userToken = useSelector((state) => state.auth.token);
+  console.log(userToken);
 
   const [pizzas, setPizzas] = useState([]);
 
@@ -57,6 +62,21 @@ export default function Menu() {
     } catch (e) {
       console.log(e.response.data.errors[0]);
     }
+  };
+
+  const handleAddProduct = (pizza) => {
+    dispatch(
+      actions.addProduct({
+        id: pizza.id,
+        photo: pizza.Photos[0].url,
+        name: pizza.name,
+        price: pizza.price,
+      })
+    );
+  };
+
+  const handleRemoveProduct = (pizzaId) => {
+    dispatch(actions.removeProduct({ id: pizzaId }));
   };
 
   return (
@@ -116,10 +136,20 @@ export default function Menu() {
                   </span>
                 ) : (
                   <span className="buttons">
-                    <span className="plus-button">
+                    <span
+                      className="plus-button"
+                      onClick={() => {
+                        handleAddProduct(pizza);
+                      }}
+                    >
                       <FaPlus size={12} />
                     </span>
-                    <span className="remove-button">
+                    <span
+                      className="remove-button"
+                      onClick={() => {
+                        handleRemoveProduct(pizza.id);
+                      }}
+                    >
                       <FaMinus size={12} />
                     </span>
                   </span>

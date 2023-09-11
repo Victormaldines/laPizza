@@ -4,6 +4,8 @@ import { HomeSection, HomeContainer } from './styled';
 
 export default function Home() {
   const username = useSelector((state) => state.auth.user.name);
+  const products = useSelector((state) => state.cart.products);
+  console.log(products);
 
   return (
     <HomeContainer className="grid-template">
