@@ -36,6 +36,7 @@ export default function Menu() {
     async function getData() {
       const response = await axios.get('/products');
       setPizzas(response.data);
+      // renderButtons();
     }
     getData();
   }, []);
@@ -112,6 +113,7 @@ export default function Menu() {
                   <span className="currency">R$</span>{' '}
                   <span className="price">{formatPrice(pizza.price)}</span>
                 </span>
+
                 {isAdmin ? (
                   <span className="buttons">
                     <Link
@@ -134,7 +136,7 @@ export default function Menu() {
                       <FaExclamation size={12} />
                     </span>
                   </span>
-                ) : (
+                ) : userToken ? (
                   <span className="buttons">
                     <span
                       className="plus-button"
@@ -153,7 +155,7 @@ export default function Menu() {
                       <FaMinus size={12} />
                     </span>
                   </span>
-                )}
+                ) : null}
               </Info>
             </Pizza>
           ))}

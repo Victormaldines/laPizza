@@ -150,6 +150,7 @@ export default function Product({ match }) {
                 type="text"
                 id="name"
                 placeholder="nome"
+                autoComplete="off"
                 defaultValue={product.name}
                 onChange={(e) => {
                   setNewProduct((product) => ({

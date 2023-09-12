@@ -2,9 +2,8 @@ import { useState } from 'react';
 // import { toast } from 'react-toastify';
 import { useDispatch } from 'react-redux';
 import { get } from 'lodash';
-// import { useSelector } from 'react-redux';
 
-import { LoginContainer, LoginSection, Form } from './styled';
+import { LoginContainer, LoginSection, Title, Form } from './styled';
 import * as actions from '../../store/modules/auth/action';
 
 export default function Login(props) {
@@ -39,6 +38,7 @@ export default function Login(props) {
   return (
     <LoginContainer>
       <LoginSection>
+        <Title>Login</Title>
         <Form onSubmit={handleSubmit}>
           <span>
             <label htmlFor="user">Usuário</label>

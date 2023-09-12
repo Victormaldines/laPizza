@@ -40,9 +40,7 @@ export const Header = () => {
               <span onClick={toggleDropdown}>Minha conta</span>
               <ul className={isDropdownOpen ? 'dropdown-open' : ''}>
                 {console.log(isAdmin)}
-                {isAdmin ? (
-                  <></>
-                ) : (
+                {isAdmin ? null : (
                   <>
                     <li>
                       <Link className="list-link" to="/cart">

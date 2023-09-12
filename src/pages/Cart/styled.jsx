@@ -35,6 +35,13 @@ export const CartSection = styled(Section)`
   }
 `;
 
+export const Title = styled.span`
+  font-size: 1.5em;
+  margin: 50px 0;
+  text-transform: uppercase;
+  letter-spacing: 4px;
+`;
+
 export const Product = styled.span`
   justify-content: space-around;
   font-size: 0.9em;

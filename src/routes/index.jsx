@@ -15,11 +15,36 @@ export default function defaultRoutes() {
       <MyRoute exact path="/" component={Home} />
       <MyRoute exact path="/menu/" component={Menu} />
       <MyRoute exact path="/login/" component={Login} />
-      <MyRoute exact path="/my-info/" component={MyInfo} />
-      <MyRoute exact path="/my-orders/" component={MyOrders} />
-      <MyRoute exact path="/product/" component={Product} />
-      <MyRoute exact path="/product/:id/edit" component={Product} />
-      <MyRoute exact path="/cart/" component={Cart} />
+      <MyRoute exact path="/my-info/" component={MyInfo} isClosed />
+      <MyRoute
+        exact
+        path="/my-orders/"
+        component={MyOrders}
+        isClosed
+        onlyAvailableTo="customer"
+      />
+      <MyRoute
+        exact
+        path="/product/"
+        component={Product}
+        isClosed
+        onlyAvailableTo="admin"
+      />
+      <MyRoute
+        exact
+        path="/product/:id/edit"
+        component={Product}
+        isClosed
+        onlyAvailableTo="admin"
+      />
+      <MyRoute
+        exact
+        path="/cart/"
+        component={Cart}
+        isClosed
+        isAdminOnly={false}
+        onlyAvailableTo="customer"
+      />
       <MyRoute path="*" component={Home} />
     </Switch>
   );

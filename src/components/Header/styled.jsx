@@ -85,6 +85,10 @@ export const Dropdown = styled.div`
       font-weight: bold;
       letter-spacing: 1.3px;
     }
+
+    &:active {
+      letter-spacing: 1px;
+    }
   }
 
   li + li {

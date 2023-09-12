@@ -10,11 +10,20 @@ export const LoginContainer = styled(Container)`
 `;
 
 export const LoginSection = styled(Section)`
+  display: flex;
+  flex-direction: column;
   background: linear-gradient(135deg, rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.6));
   backdrop-filter: blur(3px);
   border-radius: 20px;
   width: 500px;
   height: 400px;
+`;
+
+export const Title = styled.span`
+  font-size: 1.5em;
+  margin: 0 0 20px 0;
+  text-transform: uppercase;
+  letter-spacing: 4px;
 `;
 
 export const Form = styled.form`

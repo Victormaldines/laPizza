@@ -18,7 +18,7 @@ export const MyInfoSection = styled(Section)`
   backdrop-filter: blur(3px);
   border-radius: 20px;
   min-width: 450px;
-  padding: 40px 50px;
+  padding: 60px 50px;
 
   span + span {
     padding-top: 15px;
@@ -99,4 +99,12 @@ export const MyInfoSection = styled(Section)`
   .editing-buttons button + button {
     margin-left: 20px;
   }
+`;
+
+export const Title = styled.span`
+  text-align: center;
+  font-size: 1.2em;
+  margin: 0 0 30px 0;
+  text-transform: uppercase;
+  letter-spacing: 4px;
 `;

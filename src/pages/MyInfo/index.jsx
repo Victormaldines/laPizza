@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { FaEdit, FaCheck, FaTimes } from 'react-icons/fa';
 
-import { MyInfoContainer, MyInfoSection } from './styled';
+import { MyInfoContainer, MyInfoSection, Title } from './styled';
 import * as actions from '../../store/modules/auth/action';
 import axios from '../../services/axios';
 import history from '../../services/history';
@@ -39,6 +39,14 @@ export default function MyInformations() {
   }
 
   async function handleConfirmEdit() {
+    if (
+      localUser.name === name &&
+      localUser.user === user &&
+      !localUser.password
+    ) {
+      handleCancelEdit();
+      return;
+    }
     try {
       if (isAdmin) {
         await axios.put(`/users/`, localUser, {
@@ -63,6 +71,7 @@ export default function MyInformations() {
   return (
     <MyInfoContainer>
       <MyInfoSection>
+        <Title>Minhas informações</Title>
         <span>
           <label>Nome</label>
           <span className="data-group">

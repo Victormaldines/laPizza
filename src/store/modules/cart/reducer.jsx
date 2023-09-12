@@ -46,6 +46,11 @@ export default function (state = initialState, action) {
       return newState;
     }
 
+    case types.REMOVE_ALL_PRODUCTS: {
+      const newState = { products: [] };
+      return newState;
+    }
+
     default:
       return initialState;
   }

@@ -14,3 +14,10 @@ export function removeProduct(payload) {
     payload,
   };
 }
+
+export function removeAllProducts(payload) {
+  return {
+    type: types.REMOVE_ALL_PRODUCTS,
+    payload,
+  };
+}
