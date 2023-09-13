@@ -10,8 +10,6 @@ import axios from '../../services/axios';
 
 export default function MyOrder() {
   const user = useSelector((state) => state.auth.user);
-  const mano = useSelector((state) => state.cart);
-  console.log(mano, user);
 
   const products = useRef([]);
   const prevElement = useRef();
@@ -50,9 +48,13 @@ export default function MyOrder() {
     let hasProducts = false;
     let product;
     items.forEach(async (item, index) => {
-      hasProducts = true;
-      product = await axios.get(`/products/${item.product_id}`);
-      products.current.push(product.data);
+      console.log(item.product_id);
+      if (item.product_id) {
+        hasProducts = true;
+        product = await axios.get(`/products/${item.product_id}`);
+        products.current.push(product.data);
+        console.log(products.current);
+      }
       if (items.length - 1 == index) {
         renderProducts(items, orderIndex);
       }
@@ -63,21 +65,31 @@ export default function MyOrder() {
   };
 
   const renderProducts = (items) => {
-    let productsArray = products.current.map((product, index) => (
-      <Product className="product" key={index}>
-        <span className="product-image">
-          <img crossOrigin="true" src={products.current[index].Photos[0].url} />
-        </span>
-        <span className="product-info">
-          <span className="product-name">{product.name}</span>
-          <span className="product-quantity">
-            Quantidade: {items[index].quantity}
+    let productsArray = products.current.map((product, index) => {
+      const productPhoto = checkProductHasPhoto(products.current[index]);
+      return (
+        <Product className="product" key={index}>
+          <span className="product-image">
+            <img crossOrigin="true" src={productPhoto} />
           </span>
-        </span>
-      </Product>
-    ));
+          <span className="product-info">
+            <span className="product-name">{product.name}</span>
+            <span className="product-quantity">
+              {/* {console.log(items[index])} */}
+              Quantidade: {items[index].quantity}
+            </span>
+          </span>
+        </Product>
+      );
+    });
 
     setRenderedProducts(productsArray);
+  };
+
+  const checkProductHasPhoto = (product) => {
+    return product.Photos[0] === undefined
+      ? 'https://i.ibb.co/yQB62bX/utensils.png'
+      : product.Photos[0].url;
   };
 
   return (
@@ -107,7 +119,7 @@ export default function MyOrder() {
                       )}
                     </td>
                     {/* Apparently the date isn't returning GMT-03 time zone */}
-                    <td>{formatDate(`${order.created_at}`)}*</td>
+                    <td>{formatDate(`${order.created_at}`)}</td>
                     <td className={'status ' + `${order.status}`}>
                       {translateStatus(order.status)}
                     </td>

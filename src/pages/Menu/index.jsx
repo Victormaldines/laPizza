@@ -10,6 +10,7 @@ import {
 import { formatPrice } from '../../utils/formatPrice';
 import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
+import { toast } from 'react-toastify';
 
 import {
   MenuContainer,
@@ -66,14 +67,24 @@ export default function Menu() {
   };
 
   const handleAddProduct = (pizza) => {
+    const productPhoto = checkProductHasPhoto(pizza);
+
     dispatch(
       actions.addProduct({
         id: pizza.id,
-        photo: pizza.Photos[0].url,
+        photo: productPhoto,
         name: pizza.name,
         price: pizza.price,
       })
     );
+
+    toast.success(`${pizza.name} foi adicionada ao carrinho :)`);
+  };
+
+  const checkProductHasPhoto = (product) => {
+    return product.Photos[0] === undefined
+      ? 'https://i.ibb.co/yQB62bX/utensils.png'
+      : product.Photos[0].url;
   };
 
   const handleRemoveProduct = (pizzaId) => {
@@ -101,7 +112,11 @@ export default function Menu() {
               <Image>
                 <img
                   crossOrigin="true"
-                  src={pizza.Photos[0] !== undefined ? pizza.Photos[0].url : ''}
+                  src={
+                    pizza.Photos[0] !== undefined
+                      ? pizza.Photos[0].url
+                      : 'https://i.ibb.co/yQB62bX/utensils.png'
+                  }
                   alt={pizza.name}
                 ></img>
               </Image>

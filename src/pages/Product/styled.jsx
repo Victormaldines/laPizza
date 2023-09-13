@@ -87,6 +87,10 @@ export const Form = styled.form`
         padding: 5px;
         border: 1px solid white;
         border-radius: 5px;
+
+        &:focus {
+          border: 1px dashed #8e0101;
+        }
       }
 
       textarea {

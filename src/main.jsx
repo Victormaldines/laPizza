@@ -2,6 +2,7 @@ import ReactDOM from 'react-dom/client';
 import { Router } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import { PersistGate } from 'redux-persist/integration/react';
+import { ToastContainer } from 'react-toastify';
 
 import GlobalStyle from './styles/GlobalStyles';
 import store, { persistor } from './store';
@@ -16,6 +17,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
         <Header />
         <Routes />
         <GlobalStyle />
+        <ToastContainer autoClose={3000} />
       </Router>
     </PersistGate>
   </Provider>

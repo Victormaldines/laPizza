@@ -69,11 +69,21 @@ export const Pizza = styled.section`
 export const Image = styled(Section)`
   width: 25vw;
 
-  img {
-    box-shadow: 0 0 5px black;
+  img,
+  & span {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(5px);
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.6);
     width: 13vw;
     height: 13vw;
     border-radius: 50%;
+
+    & svg {
+      font-size: 40px;
+    }
   }
 `;
 

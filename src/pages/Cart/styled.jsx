@@ -24,13 +24,25 @@ export const CartSection = styled(Section)`
     padding: 0 20px;
 
     .checkout-button {
-      font-size: 0.9em;
-      text-transform: uppercase;
+      background: linear-gradient(
+        135deg,
+        rgba(255, 0, 0, 0.8),
+        rgba(255, 0, 0, 0.2)
+      );
       font-weight: bold;
-      background: red;
-      padding: 10px 20px;
-      border-radius: 5px;
-      cursor: pointer;
+      padding: 10px 25px;
+      transition: border 0.075s ease-in;
+
+      &:hover {
+        letter-spacing: 0.2px;
+        border: 1px solid white;
+        background: linear-gradient(
+          135deg,
+          rgba(255, 0, 0, 1),
+          rgba(255, 0, 0, 0.4)
+        );
+        box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+      }
     }
   }
 `;

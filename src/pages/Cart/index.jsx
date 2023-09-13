@@ -65,7 +65,11 @@ export default function Cart() {
         {products.map((product, index) => (
           <Product className="product" key={index}>
             <span className="product-image">
-              <img crossOrigin="true" src={product.photo} alt="image" />
+              <img
+                crossOrigin="true"
+                src={product.photo ? product.photo : ''}
+                alt="image"
+              />
             </span>
             <span className="product-info">
               <span className="product-name">{product.name}</span>
@@ -84,7 +88,7 @@ export default function Cart() {
               Total: R$
               {formatPrice(orderPrice)}
             </span>
-            <span className="checkout-button" onClick={handleOrder}>
+            <span className="checkout-button button" onClick={handleOrder}>
               Fazer pedido
             </span>
           </span>
