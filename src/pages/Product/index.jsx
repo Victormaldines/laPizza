@@ -4,6 +4,7 @@ import { get } from 'lodash';
 import PropTypes from 'prop-types';
 import { useSelector } from 'react-redux';
 import { isFloat } from 'validator';
+import { toast } from 'react-toastify';
 
 import { ProductContainer, ProductSection, Form } from './styled';
 import axios from '../../services/axios';
@@ -34,23 +35,19 @@ export default function Product({ match }) {
     const file = e.target.files[0];
     const photoUrl = URL.createObjectURL(file);
     setPhoto(photoUrl);
-    console.log(photo, photoUrl);
 
     formData.append('product_id', id);
     formData.append('photo', file);
-    console.log(formData, 'b');
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       if (id) {
-        console.log('updating...');
         await axios.put(`/products/${id}`, newProduct, {
           headers: { Authorization: `Bearer ${user.token}` },
         });
       } else {
-        console.log('creating...');
         if (
           !(
             newProduct.name &&
@@ -59,7 +56,7 @@ export default function Product({ match }) {
             newProduct.price
           )
         ) {
-          console.log('Preencha todos os campos');
+          toast.error('Preencha todos os campos');
           return;
         }
         let errors = [];
@@ -89,14 +86,12 @@ export default function Product({ match }) {
         }
 
         const { data } = await axios.post('/products', newProduct);
-        console.log('a');
+        toast.success('Produto adicionado com sucesso');
         history.push(`/product/${data.id}/edit`);
-        console.log('b');
         return;
       }
 
       if (formData.get('product_id')) {
-        console.log('updating...');
         await axios.post('photos', formData, {
           headers: {
             'Content-Type': 'multipart/form-data',
@@ -112,7 +107,7 @@ export default function Product({ match }) {
 
   function showErrors(errors) {
     errors.forEach((error) => {
-      console.log(error);
+      toast.error(error);
     });
   }
 

@@ -1,6 +1,7 @@
 import { useState } from 'react';
-// import { toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 import { useDispatch } from 'react-redux';
+import { Link } from 'react-router-dom';
 import { get } from 'lodash';
 
 import { LoginContainer, LoginSection, Title, Form } from './styled';
@@ -21,18 +22,16 @@ export default function Login(props) {
 
     if (user.length < 3 || user.length > 50) {
       formErrors = true;
-      console.log('Usuário precisa ter entre 3 e 50 caracteres');
+      toast.error('Usuário precisa ter entre 3 e 50 caracteres');
     }
 
     if (password.length < 6 || password.length > 255) {
       formErrors = true;
-      console.log('Senha precisa ter entre 6 e 255 caracteres');
+      toast.error('Senha precisa ter entre 6 e 255 caracteres');
     }
 
     if (formErrors) return;
-    console.log('a');
     dispatch(actions.loginRequest({ user, password, prevPath }));
-    console.log('g');
   };
 
   return (
@@ -62,6 +61,9 @@ export default function Login(props) {
           </span>
           <span>
             <button type="submit">Entrar</button>
+            <span className="register">
+              Não possui uma conta? <Link to="/register">Registre-se aqui</Link>
+            </span>
           </span>
         </Form>
       </LoginSection>

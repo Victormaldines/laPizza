@@ -1,3 +1,5 @@
+import { toast } from 'react-toastify';
+
 import * as types from '../types';
 
 const initialState = {
@@ -23,6 +25,8 @@ export default function (state = initialState, action) {
           isAdded = true;
         }
       });
+
+      toast.success(`${newProduct.name} foi adicionada ao carrinho :)`);
       if (isAdded) return newState;
 
       newState.products.push({ ...newProduct, quantity: 1 });
@@ -41,6 +45,7 @@ export default function (state = initialState, action) {
           } else {
             newState.products.splice(index, 1);
           }
+          toast.error(`${product.name} foi removida do carrinho`);
         }
       });
       return newState;

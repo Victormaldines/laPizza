@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { FaEdit, FaCheck, FaTimes } from 'react-icons/fa';
+import { toast } from 'react-toastify';
 
 import { MyInfoContainer, MyInfoSection, Title } from './styled';
 import * as actions from '../../store/modules/auth/action';
@@ -58,8 +59,12 @@ export default function MyInformations() {
 
       setIsEditing(toggleIsEditing());
       dispatch(actions.loginFailure());
+      toast.success(
+        'Dados atualizados com sucesso! Por favor, logue-se novamente'
+      );
       history.push('/login');
     } catch (e) {
+      toast.error('Usuário escolhido já está em uso :(');
       console.log(e.response.data.errors);
     }
   }

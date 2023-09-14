@@ -39,7 +39,6 @@ export const Header = () => {
             <Dropdown>
               <span onClick={toggleDropdown}>Minha conta</span>
               <ul className={isDropdownOpen ? 'dropdown-open' : ''}>
-                {console.log(isAdmin)}
                 {isAdmin ? null : (
                   <>
                     <li>

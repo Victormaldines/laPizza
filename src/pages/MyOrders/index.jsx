@@ -95,7 +95,7 @@ export default function MyOrder() {
   return (
     <MyOrdersContainer>
       <MyOrdersSection>
-        <span className="title">Meus Pedidos</span>
+        <span className="title">Meus pedidos</span>
         <span>
           {orders.map((order, index) => (
             <Order key={index}>

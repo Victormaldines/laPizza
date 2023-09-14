@@ -17,7 +17,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
         <Header />
         <Routes />
         <GlobalStyle />
-        <ToastContainer autoClose={3000} />
+        <ToastContainer autoClose={2000} />
       </Router>
     </PersistGate>
   </Provider>

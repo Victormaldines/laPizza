@@ -1,15 +1,14 @@
 import styled from 'styled-components';
-
 import { Container, Section } from '../../styles/GlobalStyles';
 
-export const LoginContainer = styled(Container)`
-  color: white;
+export const RegisterContainer = styled(Container)`
   display: flex;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
+  color: white;
 `;
 
-export const LoginSection = styled(Section)`
+export const RegisterSection = styled(Section)`
   display: flex;
   flex-direction: column;
   background: linear-gradient(135deg, rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.6));
@@ -20,9 +19,9 @@ export const LoginSection = styled(Section)`
 `;
 
 export const Title = styled.span`
-  font-size: 1.5em;
-  margin: 0 0 20px 0;
+  margin-bottom: 40px;
   text-transform: uppercase;
+  font-size: 1.3em;
   letter-spacing: 4px;
 `;
 
@@ -66,24 +65,6 @@ export const Form = styled.form`
       &:hover {
         filter: brightness(110%);
         letter-spacing: 0.5px;
-      }
-    }
-
-    .register {
-      margin-top: 2px;
-      display: inline-block;
-      font-size: 0.8em;
-
-      a {
-        display: inline-block;
-        color: red;
-        text-decoration: underline;
-        cursor: pointer;
-        transition: 0.075s ease-in;
-
-        &:hover {
-          color: white;
-        }
       }
     }
   }

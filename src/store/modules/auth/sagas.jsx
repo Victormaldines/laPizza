@@ -13,7 +13,7 @@ function* loginRequest({ payload }) {
     console.log(response.data);
     yield put(actions.loginSuccess({ ...response.data }));
     console.log('f sag');
-    toast.success('Login efetuado com sucesso!');
+    toast.success('Seja bem-vindo(a)!');
 
     axios.defaults.headers.Authorization = `Bearer ${response.data.token}`;
 
@@ -21,9 +21,22 @@ function* loginRequest({ payload }) {
   } catch (e) {
     console.log('x sag');
     yield put(actions.loginFailure());
-    console.log('Usuário ou senha inválidos');
     toast.error('Usuário ou senha inválidos');
   }
 }
 
-export default all([takeLatest(types.LOGIN_REQUEST, loginRequest)]);
+function* registerRequest({ payload }) {
+  try {
+    const response = yield call(axios.post, '/customers', payload);
+    yield put(actions.registerSuccess({ ...response.data }));
+    toast.success('Registro efetuado com sucesso :)');
+    history.push('/login');
+  } catch (e) {
+    toast.error('O usuário escolhido já está em uso :(');
+  }
+}
+
+export default all([
+  takeLatest(types.LOGIN_REQUEST, loginRequest),
+  takeLatest(types.REGISTER_REQUEST, registerRequest),
+]);

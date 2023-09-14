@@ -10,7 +10,6 @@ import {
 import { formatPrice } from '../../utils/formatPrice';
 import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { toast } from 'react-toastify';
 
 import {
   MenuContainer,
@@ -29,7 +28,6 @@ export default function Menu() {
 
   const isAdmin = useSelector((state) => state.auth.isAdmin);
   const userToken = useSelector((state) => state.auth.token);
-  console.log(userToken);
 
   const [pizzas, setPizzas] = useState([]);
 
@@ -37,7 +35,6 @@ export default function Menu() {
     async function getData() {
       const response = await axios.get('/products');
       setPizzas(response.data);
-      // renderButtons();
     }
     getData();
   }, []);
@@ -77,8 +74,6 @@ export default function Menu() {
         price: pizza.price,
       })
     );
-
-    toast.success(`${pizza.name} foi adicionada ao carrinho :)`);
   };
 
   const checkProductHasPhoto = (product) => {

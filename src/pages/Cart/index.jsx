@@ -1,12 +1,14 @@
 import { useSelector } from 'react-redux';
 import { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
+import { toast } from 'react-toastify';
 
 import { CartContainer, CartSection, Product, Title } from './styled';
 import history from '../../services/history';
 import axios from '../../services/axios';
 import * as actions from '../../store/modules/cart/action';
 import { formatPrice } from '../../utils/formatPrice';
+import getFirstName from '../../utils/scripts/getFirstName';
 
 export default function Cart() {
   const dispatch = useDispatch();
@@ -52,6 +54,11 @@ export default function Cart() {
       });
 
       dispatch(actions.removeAllProducts());
+      toast.success(
+        `Uma ótima pedida, ${getFirstName(
+          user.name
+        )}! Seu pedido chegará em breve :)`
+      );
       history.push('/my-orders');
     } catch (e) {
       console.log(e);

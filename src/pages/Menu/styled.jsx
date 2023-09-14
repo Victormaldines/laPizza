@@ -19,10 +19,12 @@ export const PizzaSection = styled(Section)`
   }
 
   .button {
+    font-size: 0.9em;
+    text-transform: uppercase;
     font-weight: bold;
     color: white;
-    border: 1px solid rgb(0, 255, 0);
-    background: linear-gradient(135deg, #018e42, rgb(0, 200, 0));
+    border: 1px solid rgb(255, 0, 0);
+    background: linear-gradient(135deg, #8e0101, rgb(200, 0, 0));
 
     svg {
       font-size: 0.8em;
@@ -32,7 +34,7 @@ export const PizzaSection = styled(Section)`
 
   .button:hover {
     letter-spacing: initial;
-    background: linear-gradient(135deg, #018e42, rgb(0, 230, 0));
+    background: linear-gradient(135deg, #b10909, rgb(230, 0, 0));
     box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
   }
 `;
