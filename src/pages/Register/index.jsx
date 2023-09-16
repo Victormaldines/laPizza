@@ -20,6 +20,16 @@ export default function Register() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    if (formHaveErrors()) return;
+
+    try {
+      dispatch(actions.registerRequest({ name, user, password }));
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
+  const formHaveErrors = () => {
     let formErrors = [];
 
     if (name.length < 3 || name.length > 255) {
@@ -35,18 +45,13 @@ export default function Register() {
     }
 
     if (formErrors.length > 0) {
-      showErrors(formErrors);
-      return;
+      showFormErrors(formErrors);
+      return true;
     }
-
-    try {
-      dispatch(actions.registerRequest({ name, user, password }));
-    } catch (e) {
-      console.log(e);
-    }
+    return false;
   };
 
-  const showErrors = (errors) => {
+  const showFormErrors = (errors) => {
     errors.forEach((error) => {
       toast.error(error);
     });

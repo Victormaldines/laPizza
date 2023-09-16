@@ -42,48 +42,26 @@ export default function Product({ match }) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    if (
+      !areFieldsFilledIn([
+        newProduct.name,
+        newProduct.ingredients,
+        newProduct.description,
+        newProduct.price,
+      ])
+    ) {
+      showErrors(['Preencha todos os campos']);
+      return;
+    }
+
     try {
       if (id) {
         await axios.put(`/products/${id}`, newProduct, {
           headers: { Authorization: `Bearer ${user.token}` },
         });
       } else {
-        if (
-          !(
-            newProduct.name &&
-            newProduct.ingredients &&
-            newProduct.description &&
-            newProduct.price
-          )
-        ) {
-          toast.error('Preencha todos os campos');
-          return;
-        }
-        let errors = [];
-
-        if (newProduct.name.length < 3 || newProduct.name.length > 255) {
-          errors.push('Nome precisa ter entre 3 e 255 caracteres');
-        }
-        if (
-          newProduct.ingredients.length < 3 ||
-          newProduct.ingredients.length > 1024
-        ) {
-          errors.push('Ingredientes precisa ter entre 3 e 1024 caracteres');
-        }
-        if (
-          newProduct.description.length < 3 ||
-          newProduct.ingredients.length > 1024
-        ) {
-          errors.push('Descrição precisa ter entre 3 e 1024 caracteres');
-        }
-        if (!isFloat(newProduct.price)) {
-          errors.push('Preço precisa ser um valor real');
-        }
-
-        if (errors.length > 0) {
-          showErrors(errors);
-          return;
-        }
+        if (formHaveErrors()) return;
 
         const { data } = await axios.post('/products', newProduct);
         toast.success('Produto adicionado com sucesso');
@@ -105,11 +83,51 @@ export default function Product({ match }) {
     history.push('/menu');
   };
 
-  function showErrors(errors) {
+  const areFieldsFilledIn = (fields) => {
+    let isFilledIn = true;
+    fields.forEach((field) => {
+      if (!field) {
+        isFilledIn = false;
+      }
+    });
+
+    return isFilledIn;
+  };
+
+  const formHaveErrors = () => {
+    let errors = [];
+
+    if (newProduct.name.length < 3 || newProduct.name.length > 255) {
+      errors.push('Nome precisa ter entre 3 e 255 caracteres');
+    }
+    if (
+      newProduct.ingredients.length < 3 ||
+      newProduct.ingredients.length > 1024
+    ) {
+      errors.push('Ingredientes precisa ter entre 3 e 1024 caracteres');
+    }
+    if (
+      newProduct.description.length < 3 ||
+      newProduct.ingredients.length > 1024
+    ) {
+      errors.push('Descrição precisa ter entre 3 e 1024 caracteres');
+    }
+    if (!isFloat(newProduct.price)) {
+      errors.push('Preço precisa ser um valor real');
+    }
+
+    if (errors.length > 0) {
+      showErrors(errors);
+      return true;
+    }
+    return false;
+  };
+
+  const showErrors = (errors) => {
     errors.forEach((error) => {
       toast.error(error);
     });
-  }
+  };
 
   return (
     <ProductContainer>

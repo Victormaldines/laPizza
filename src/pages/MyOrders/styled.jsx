@@ -12,6 +12,7 @@ export const MyOrdersSection = styled(Section)`
   background: ${colors.fadedBlack};
   min-height: 80vh;
   border-radius: 20px;
+  padding-bottom: 40px;
 `;
 
 export const MyOrdersTitle = styled(Title)``;

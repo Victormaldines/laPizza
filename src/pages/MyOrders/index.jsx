@@ -32,35 +32,22 @@ export default function MyOrder() {
   }, [user]);
 
   const getProducts = (e, items, orderIndex) => {
-    products.current = [];
+    resetProducts();
     const element = e.target;
 
-    if (element.classList.contains('info-active')) {
-      element.classList.remove('info-active');
-      prevElement.current = undefined;
-      setLoadedInfo(-1);
-      return;
-    } else {
-      element.classList.add('info-active');
-    }
-
-    if (prevElement.current !== undefined) {
-      prevElement.current.classList.remove('info-active');
-    }
-    prevElement.current = element;
-
-    setLoadedInfo(orderIndex);
+    selectProductToLoad(element, orderIndex);
 
     let hasProducts = false;
     let product;
     items.forEach(async (item, index) => {
-      console.log(item.product_id);
       if (item.product_id) {
         hasProducts = true;
-        product = await axios.get(`/products/${item.product_id}`);
-        products.current.push(product.data);
-        console.log(products.current);
+        const { data } = await axios.get(`/products/${item.product_id}`);
+        product = data;
+      } else {
+        product = { name: 'Pizza removida', Photos: [undefined] };
       }
+      products.current.push(product);
       if (items.length - 1 == index) {
         renderProducts(items, orderIndex);
       }
@@ -68,6 +55,40 @@ export default function MyOrder() {
     if (!hasProducts) {
       renderProducts();
     }
+  };
+
+  const resetProducts = () => {
+    products.current = [];
+  };
+
+  const selectProductToLoad = (element, orderIndex) => {
+    if (hasClass(element, 'info-active')) {
+      removeClass(element, 'info-active');
+      prevElement.current = undefined;
+      setLoadedInfo(-1);
+      return;
+    } else {
+      addClass(element, 'info-active');
+    }
+
+    if (prevElement.current !== undefined) {
+      removeClass(prevElement.current, 'info-active');
+    }
+    prevElement.current = element;
+
+    setLoadedInfo(orderIndex);
+  };
+
+  const hasClass = (element, htmlClass) => {
+    return element.classList.contains(htmlClass);
+  };
+
+  const addClass = (element, htmlClass) => {
+    element.classList.add(htmlClass);
+  };
+
+  const removeClass = (element, htmlClass) => {
+    element.classList.remove(htmlClass);
   };
 
   const renderProducts = (items) => {
@@ -123,7 +144,6 @@ export default function MyOrder() {
                         0
                       )}
                     </td>
-                    {/* Apparently the date isn't returning GMT-03 time zone */}
                     <td>{formatDate(`${order.created_at}`)}</td>
                     <td className={'status ' + `${order.status}`}>
                       {translateStatus(order.status)}
