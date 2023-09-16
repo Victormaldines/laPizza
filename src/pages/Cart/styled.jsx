@@ -1,10 +1,10 @@
 import styled from 'styled-components';
 
-import { Container, Section } from '../../styles/GlobalStyles';
+import { Container, Section, Title } from '../../styles/GlobalStyles';
+import * as colors from '../../config/colors';
 
 export const CartContainer = styled(Container)`
   padding: 20px 0;
-  color: white;
 `;
 
 export const CartSection = styled(Section)`
@@ -13,7 +13,7 @@ export const CartSection = styled(Section)`
   min-height: 80vh;
   border-radius: 20px;
   padding: 40px;
-  background: rgba(0, 0, 0, 0.8);
+  background: ${colors.fadedBlack};
 
   .checkout {
     display: flex;
@@ -26,42 +26,33 @@ export const CartSection = styled(Section)`
     .checkout-button {
       background: linear-gradient(
         135deg,
-        rgba(255, 0, 0, 0.8),
-        rgba(255, 0, 0, 0.2)
+        ${colors.red},
+        ${colors.gradientRedEnd}
       );
       font-weight: bold;
       padding: 10px 25px;
-      transition: border 0.075s ease-in;
+      transition: border 0.075s ease-in, filter 0.075s ease-in;
 
       &:hover {
-        letter-spacing: 0.2px;
-        border: 1px solid white;
-        background: linear-gradient(
-          135deg,
-          rgba(255, 0, 0, 1),
-          rgba(255, 0, 0, 0.4)
-        );
-        box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+        letter-spacing: initial;
+        border: 1px solid #fff;
+        filter: brightness(150%);
+        box-shadow: 2px 2px 5px ${colors.blackShadow};
       }
     }
   }
 `;
 
-export const Title = styled.span`
-  font-size: 1.5em;
-  margin: 50px 0;
-  text-transform: uppercase;
-  letter-spacing: 4px;
-`;
+export const CartTitle = styled(Title)``;
 
 export const Product = styled.span`
-  justify-content: space-around;
-  font-size: 0.9em;
-  width: 25vw;
   display: flex;
+  justify-content: space-around;
+  width: 25vw;
   background: rgba(0, 0, 0, 0.4);
+  font-size: 0.9em;
   backdrop-filter: blur(10px);
-  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+  box-shadow: 2px 2px 5px ${colors.blackShadow};
   border-radius: 5px;
   padding: 30px 45px;
   margin-bottom: 30px;
@@ -83,7 +74,7 @@ export const Product = styled.span`
     justify-content: center;
     margin: 40px 0px;
     padding-left: 20px;
-    border-left: 2px dashed red;
+    border-left: 2px dashed #f00;
 
     .product-name {
       text-transform: uppercase;

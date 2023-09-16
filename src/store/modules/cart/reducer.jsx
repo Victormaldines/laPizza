@@ -13,9 +13,6 @@ export default function (state = initialState, action) {
       const newProduct = action.payload;
       let isAdded = false;
 
-      console.log(newProduct);
-      console.log(newState, ' ADD_PRODUCT red');
-
       newState.products.forEach((product) => {
         const auxProduct = { ...product };
         delete auxProduct.quantity;
@@ -36,10 +33,9 @@ export default function (state = initialState, action) {
     case types.REMOVE_PRODUCT: {
       const newState = { ...state };
       const pizzaId = action.payload.id;
-      console.log(newState, ' REMOVE_PRODUCT red');
+
       newState.products.forEach((product, index) => {
         if (product.id === pizzaId) {
-          console.log('found!', product);
           if (product.quantity > 1) {
             product.quantity--;
           } else {
@@ -48,6 +44,7 @@ export default function (state = initialState, action) {
           toast.error(`${product.name} foi removida do carrinho`);
         }
       });
+
       return newState;
     }
 

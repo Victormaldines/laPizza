@@ -3,11 +3,11 @@ import { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { toast } from 'react-toastify';
 
-import { CartContainer, CartSection, Product, Title } from './styled';
+import { CartContainer, CartSection, Product, CartTitle } from './styled';
 import history from '../../services/history';
 import axios from '../../services/axios';
 import * as actions from '../../store/modules/cart/action';
-import { formatPrice } from '../../utils/formatPrice';
+import { formatPrice } from '../../utils/scripts/formatPrice';
 import getFirstName from '../../utils/scripts/getFirstName';
 
 export default function Cart() {
@@ -68,7 +68,7 @@ export default function Cart() {
   return (
     <CartContainer>
       <CartSection>
-        <Title>Meu carrinho</Title>
+        <CartTitle>Meu carrinho</CartTitle>
         {products.map((product, index) => (
           <Product className="product" key={index}>
             <span className="product-image">

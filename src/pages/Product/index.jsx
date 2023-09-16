@@ -191,7 +191,7 @@ export default function Product({ match }) {
             <span>
               <label htmlFor="price">Preço</label>
               <input
-                type="number"
+                type="text"
                 id="price"
                 min="0"
                 placeholder="preço"

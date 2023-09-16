@@ -41,19 +41,19 @@ export const Header = () => {
               <ul className={isDropdownOpen ? 'dropdown-open' : ''}>
                 {isAdmin ? null : (
                   <>
-                    <li>
+                    <li onClick={toggleDropdown}>
                       <Link className="list-link" to="/cart">
                         <FaShoppingCart /> Carrinho
                       </Link>
                     </li>
-                    <li>
+                    <li onClick={toggleDropdown}>
                       <Link className="list-link" to="/my-orders">
                         Meus pedidos
                       </Link>
                     </li>
                   </>
                 )}
-                <li>
+                <li onClick={toggleDropdown}>
                   <Link className="list-link" to="/my-info">
                     Minhas informações
                   </Link>

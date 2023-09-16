@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { get } from 'lodash';
 
-import { LoginContainer, LoginSection, Title, Form } from './styled';
+import { LoginContainer, LoginSection, LoginTitle, LoginForm } from './styled';
 import * as actions from '../../store/modules/auth/action';
 
 export default function Login(props) {
@@ -37,8 +37,8 @@ export default function Login(props) {
   return (
     <LoginContainer>
       <LoginSection>
-        <Title>Login</Title>
-        <Form onSubmit={handleSubmit}>
+        <LoginTitle>Login</LoginTitle>
+        <LoginForm onSubmit={handleSubmit}>
           <span>
             <label htmlFor="user">Usuário</label>
             <input
@@ -65,7 +65,7 @@ export default function Login(props) {
               Não possui uma conta? <Link to="/register">Registre-se aqui</Link>
             </span>
           </span>
-        </Form>
+        </LoginForm>
       </LoginSection>
     </LoginContainer>
   );

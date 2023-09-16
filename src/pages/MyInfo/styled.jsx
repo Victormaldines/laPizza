@@ -1,12 +1,12 @@
 import styled from 'styled-components';
 
-import { Container, Section } from '../../styles/GlobalStyles';
+import { Container, Section, Title } from '../../styles/GlobalStyles';
+import * as colors from '../../config/colors';
 
 export const MyInfoContainer = styled(Container)`
   display: flex;
   align-items: center;
   justify-content: center;
-  color: white;
 `;
 
 export const MyInfoSection = styled(Section)`
@@ -14,7 +14,11 @@ export const MyInfoSection = styled(Section)`
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
-  background: linear-gradient(135deg, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0.6));
+  background: linear-gradient(
+    135deg,
+    ${colors.gradientBlackStart},
+    ${colors.gradientBlackEnd}
+  );
   backdrop-filter: blur(3px);
   border-radius: 20px;
   min-width: 450px;
@@ -41,13 +45,13 @@ export const MyInfoSection = styled(Section)`
 
   input[type='text'],
   input[type='password'] {
-    color: rgba(0, 0, 0, 0.7);
+    color: ${colors.fadedBlack};
     padding: 5px;
-    border: 1px solid white;
-    border-radius: 5px;
+    border: 1px solid #fff;
+    border-radius: 0 5px 5px 0;
 
     &:focus {
-      border: 1px dashed #8e0101;
+      border: 1px dashed ${colors.red};
     }
   }
 
@@ -62,23 +66,23 @@ export const MyInfoSection = styled(Section)`
     justify-content: center;
     align-items: center;
     justify-self: flex-end;
-    border: 1px solid red;
+    border: 1px solid #f00;
     border-radius: 4px;
-    color: white;
+    color: #fff;
     background-color: transparent;
     padding: 8px;
     cursor: pointer;
     transition: background-color 0.1s ease-in, color 0.1s ease-in;
 
     &:hover {
-      background-color: red;
+      background-color: ${colors.red};
     }
   }
 
   .user-data {
     align-self: center;
     padding: 5px 0 5px 10px;
-    border-left: 2px dashed red;
+    border-left: 2px dashed #f00;
     font-size: 0.9em;
     font-style: italic;
   }
@@ -101,10 +105,8 @@ export const MyInfoSection = styled(Section)`
   }
 `;
 
-export const Title = styled.span`
+export const MyInfoTitle = styled(Title)`
   text-align: center;
   font-size: 1.2em;
   margin: 0 0 30px 0;
-  text-transform: uppercase;
-  letter-spacing: 4px;
 `;

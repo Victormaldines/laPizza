@@ -1,9 +1,9 @@
 import styled from 'styled-components';
 
-import { Container, Section } from '../../styles/GlobalStyles';
+import { Container, Section, Title, Form } from '../../styles/GlobalStyles';
+import * as colors from '../../config/colors';
 
 export const LoginContainer = styled(Container)`
-  color: white;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -12,78 +12,36 @@ export const LoginContainer = styled(Container)`
 export const LoginSection = styled(Section)`
   display: flex;
   flex-direction: column;
-  background: linear-gradient(135deg, rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.6));
+  background: linear-gradient(
+    135deg,
+    ${colors.gradientBlackStart},
+    ${colors.gradientBlackEnd}
+  );
   backdrop-filter: blur(3px);
   border-radius: 20px;
   width: 500px;
   height: 400px;
 `;
 
-export const Title = styled.span`
-  font-size: 1.5em;
+export const LoginTitle = styled(Title)`
   margin: 0 0 20px 0;
-  text-transform: uppercase;
-  letter-spacing: 4px;
 `;
 
-export const Form = styled.form`
-  display: flex;
-  flex-direction: column;
+export const LoginForm = styled(Form)`
+  .register {
+    margin-top: 2px;
+    display: inline-block;
+    font-size: 0.8em;
 
-  & span {
-    display: flex;
-    flex-direction: column;
-
-    & label {
-      font-style: italic;
-      font-weight: bold;
-      font-size: 0.9em;
-      margin-bottom: 1px;
-    }
-
-    & input {
-      border: 1px solid white;
-      border-radius: 3px;
-      padding: 5px 10px;
-      margin-bottom: 10px;
-      font-size: 1em;
-
-      &:focus {
-        border: 1px dashed #8e0101;
-      }
-    }
-
-    & button {
-      color: white;
-      border: 1px solid red;
-      border-radius: 3px;
-      margin-top: 5px;
-      padding: 7px 10px;
-      background: linear-gradient(135deg, #8e0101, red);
+    a {
+      display: inline-block;
+      color: #f00;
+      text-decoration: underline;
       cursor: pointer;
-      transition: letter-spacing 0.1s ease-in;
+      transition: 0.075s ease-in;
 
       &:hover {
-        filter: brightness(110%);
-        letter-spacing: 0.5px;
-      }
-    }
-
-    .register {
-      margin-top: 2px;
-      display: inline-block;
-      font-size: 0.8em;
-
-      a {
-        display: inline-block;
-        color: red;
-        text-decoration: underline;
-        cursor: pointer;
-        transition: 0.075s ease-in;
-
-        &:hover {
-          color: white;
-        }
+        color: #fff;
       }
     }
   }

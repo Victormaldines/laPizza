@@ -1,16 +1,17 @@
 import styled from 'styled-components';
 
-import { Container, Section } from '../../styles/GlobalStyles';
+import { Container, Section, Title } from '../../styles/GlobalStyles';
+import * as colors from '../../config/colors';
 
 export const MenuContainer = styled(Container)`
   padding: 20px 0;
-  color: white;
 `;
 
 export const PizzaSection = styled(Section)`
+  padding: 40px 0;
   flex-direction: column;
   border-radius: 20px;
-  background-color: rgba(0, 0, 0, 0.7);
+  background-color: ${colors.fadedBlack};
 
   .add-pizza a {
     display: flex;
@@ -22,9 +23,10 @@ export const PizzaSection = styled(Section)`
     font-size: 0.9em;
     text-transform: uppercase;
     font-weight: bold;
-    color: white;
-    border: 1px solid rgb(255, 0, 0);
-    background: linear-gradient(135deg, #8e0101, rgb(200, 0, 0));
+    color: #fff;
+    border: 1px solid #f00;
+    background: linear-gradient(135deg, ${colors.red}, rgb(200, 0, 0));
+    transition: filter 0.075s ease-in;
 
     svg {
       font-size: 0.8em;
@@ -34,17 +36,14 @@ export const PizzaSection = styled(Section)`
 
   .button:hover {
     letter-spacing: initial;
-    background: linear-gradient(135deg, #b10909, rgb(230, 0, 0));
-    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+    filter: brightness(120%);
+    box-shadow: 2px 2px 5px ${colors.blackShadow};
   }
 `;
 
-export const Title = styled.span`
+export const MenuTitle = styled(Title)`
   font-size: 2.5em;
-  margin: 50px 0;
-  text-transform: uppercase;
-  font-weight: bold;
-  letter-spacing: 10px;
+  letter-spacing: 8px;
 `;
 
 export const Pizzas = styled.section`
@@ -71,21 +70,14 @@ export const Pizza = styled.section`
 export const Image = styled(Section)`
   width: 25vw;
 
-  img,
-  & span {
+  img {
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: rgba(0, 0, 0, 0.5);
-    backdrop-filter: blur(5px);
-    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.6);
+    box-shadow: 2px 2px 5px ${colors.blackShadow};
     width: 13vw;
     height: 13vw;
     border-radius: 50%;
-
-    & svg {
-      font-size: 40px;
-    }
   }
 `;
 
@@ -94,27 +86,25 @@ export const Info = styled(Section)`
   align-items: flex-start;
   flex-direction: column;
 
+  .pizza-name,
+  .pizza-description,
+  .pizza-price {
+    margin-bottom: 10px;
+  }
+
   .pizza-name {
     font-size: 1.8em;
     font-weight: bold;
     letter-spacing: 1.5px;
-    margin-bottom: 10px;
     text-transform: uppercase;
   }
 
   .pizza-ingredients {
-    font-size: 0.9em;
     font-style: italic;
+    font-size: 0.9em;
     margin-bottom: 5px;
   }
-
-  .pizza-description {
-    margin-bottom: 10px;
-  }
-
   .pizza-price {
-    margin-bottom: 10px;
-
     .currency {
       font-weight: bold;
     }
@@ -135,33 +125,34 @@ export const Info = styled(Section)`
     align-items: center;
     padding: 12px 20px;
     border-radius: 5px;
-    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+    box-shadow: 2px 2px 5px ${colors.blackShadow};
     cursor: pointer;
     transition: filter 0.07s ease-in, box-shadow 0.07s ease-in;
 
     &.plus-button {
       color: white;
-      border: 1px solid rgb(0, 255, 0);
-      background: linear-gradient(135deg, #018e42, rgb(0, 255, 0));
+      border: 1px solid #0f0;
+      background: linear-gradient(135deg, ${colors.green}, #0f0);
     }
 
+    &.delete-button,
     &.remove-button {
       margin-left: 10px;
-      color: white;
-      border: 1px solid rgb(255, 0, 0);
-      background: linear-gradient(135deg, #8e0101, rgb(255, 0, 0));
+      color: #fff;
+      border: 1px solid #f00;
+      background: linear-gradient(135deg, ${colors.red}, #f00);
     }
 
     &.edit-button {
-      border: 1px solid rgb(255, 255, 0);
-      background: linear-gradient(135deg, #8e8c01, rgb(255, 255, 0));
+      border: 1px solid #ff0;
+      background: linear-gradient(135deg, ${colors.yellow}, #ff0);
     }
 
     &.alert-button {
       display: none;
       margin-left: 10px;
-      border: 1px solid rgb(255, 123, 0);
-      background: linear-gradient(135deg, #8e4501, rgb(255, 123, 0));
+      border: 1px solid #f80;
+      background: linear-gradient(135deg, ${colors.orange}, #f80);
     }
 
     &:hover {

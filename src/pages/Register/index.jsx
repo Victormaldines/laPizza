@@ -2,17 +2,20 @@ import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { toast } from 'react-toastify';
 
-import { RegisterContainer, RegisterSection, Form, Title } from './styled';
+import {
+  RegisterContainer,
+  RegisterSection,
+  RegisterForm,
+  RegisterTitle,
+} from './styled';
 import * as actions from '../../store/modules/auth/action';
-import axios from '../../services/axios';
-import history from '../../services/history';
 
 export default function Register() {
   const dispatch = useDispatch();
 
   const [name, setName] = useState('');
   const [user, setUser] = useState('');
-  const [password, setPassword0] = useState('');
+  const [password, setPassword] = useState('');
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -28,7 +31,7 @@ export default function Register() {
     }
 
     if (password.length < 6 || password.length > 255) {
-      formErrors.push('Usuário precisa ter entre 6 e 255 caracteres');
+      formErrors.push('Senha precisa ter entre 6 e 255 caracteres');
     }
 
     if (formErrors.length > 0) {
@@ -41,8 +44,6 @@ export default function Register() {
     } catch (e) {
       console.log(e);
     }
-
-    console.log(name, user, password);
   };
 
   const showErrors = (errors) => {
@@ -54,8 +55,8 @@ export default function Register() {
   return (
     <RegisterContainer>
       <RegisterSection>
-        <Title>junte-se à nossa família</Title>
-        <Form>
+        <RegisterTitle>junte-se à nossa família</RegisterTitle>
+        <RegisterForm>
           <span>
             <label>Nome </label>
             <input
@@ -80,7 +81,7 @@ export default function Register() {
               type="password"
               id="password"
               className="password"
-              onChange={(e) => setPassword0(e.target.value)}
+              onChange={(e) => setPassword(e.target.value)}
             />
           </span>
           <span>
@@ -88,7 +89,7 @@ export default function Register() {
               Registre-se
             </button>
           </span>
-        </Form>
+        </RegisterForm>
       </RegisterSection>
     </RegisterContainer>
   );

@@ -5,8 +5,6 @@ import getFirstName from '../../utils/scripts/getFirstName';
 
 export default function Home() {
   const username = useSelector((state) => state.auth.user.name);
-  const products = useSelector((state) => state.cart.products);
-  console.log(products);
 
   return (
     <HomeContainer className="grid-template">
@@ -29,7 +27,7 @@ export default function Home() {
           </section>
           <span className="telephone">00 1234-5678</span>
           <a
-            className="button emphasis"
+            className="button"
             href="https://www.google.com.br/maps/"
             target="_blank"
             rel="noreferrer"

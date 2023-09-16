@@ -1,30 +1,25 @@
 import styled from 'styled-components';
 
-import { Container, Section } from '../../styles/GlobalStyles';
+import { Container, Section, Title } from '../../styles/GlobalStyles';
+import * as colors from '../../config/colors';
 
 export const MyOrdersContainer = styled(Container)`
   padding: 20px 0;
-  color: white;
 `;
 
 export const MyOrdersSection = styled(Section)`
   flex-direction: column;
-  background: rgba(0, 0, 0, 0.7);
+  background: ${colors.fadedBlack};
   min-height: 80vh;
   border-radius: 20px;
-
-  .title {
-    font-size: 1.5em;
-    margin: 50px 0;
-    text-transform: uppercase;
-    letter-spacing: 4px;
-  }
 `;
 
+export const MyOrdersTitle = styled(Title)``;
+
 export const Order = styled.section`
-  background: linear-gradient(135deg, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0.1));
+  background: linear-gradient(135deg, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0.075));
   backdrop-filter: blur(10px);
-  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.4);
+  box-shadow: 2px 2px 5px ${colors.blackShadow};
   border-radius: 10px;
   padding: 25px 50px 5px 50px;
   margin-bottom: 10px;

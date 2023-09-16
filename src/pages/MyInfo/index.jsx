@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { FaEdit, FaCheck, FaTimes } from 'react-icons/fa';
 import { toast } from 'react-toastify';
 
-import { MyInfoContainer, MyInfoSection, Title } from './styled';
+import { MyInfoContainer, MyInfoSection, MyInfoTitle } from './styled';
 import * as actions from '../../store/modules/auth/action';
 import axios from '../../services/axios';
 import history from '../../services/history';
@@ -76,7 +76,7 @@ export default function MyInformations() {
   return (
     <MyInfoContainer>
       <MyInfoSection>
-        <Title>Minhas informações</Title>
+        <MyInfoTitle>Minhas informações</MyInfoTitle>
         <span>
           <label>Nome</label>
           <span className="data-group">

@@ -1,13 +1,13 @@
 import styled from 'styled-components';
 
 import { Container, Section } from '../../styles/GlobalStyles';
+import * as colors from '../../config/colors';
 
 export const ProductContainer = styled(Container)`
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 20px;
-  color: white;
 `;
 
 export const ProductSection = styled(Section)`
@@ -16,9 +16,13 @@ export const ProductSection = styled(Section)`
 
   padding: 40px;
   border-radius: 20px;
-  background: linear-gradient(135deg, rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.5));
+  background: linear-gradient(
+    135deg,
+    ${colors.gradientBlackStart},
+    ${colors.gradientBlackEnd}
+  );
   backdrop-filter: blur(5px);
-  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.4);
+  box-shadow: 2px 2px 5px ${colors.blackShadow};
   max-height: 80vh;
 
   h1 {
@@ -38,7 +42,7 @@ export const Form = styled.form`
     height: 200px;
     margin-right: 40px;
     border-radius: 50%;
-    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
+    box-shadow: 2px 2px 10px ${colors.blackShadow};
     overflow: hidden;
 
     & img {
@@ -57,12 +61,12 @@ export const Form = styled.form`
       justify-content: center;
       width: 100%;
       height: 100%;
-      background-color: black;
+      background-color: #000;
       cursor: pointer;
     }
 
     svg {
-      color: rgba(255, 255, 255, 0.9);
+      color: white;
       font-size: 40px;
     }
 
@@ -85,11 +89,11 @@ export const Form = styled.form`
       textarea {
         margin-left: 20px;
         padding: 5px;
-        border: 1px solid white;
+        border: 1px solid #fff;
         border-radius: 5px;
 
         &:focus {
-          border: 1px dashed #8e0101;
+          border: 1px dashed ${colors.red};
         }
       }
 
@@ -105,7 +109,7 @@ export const Form = styled.form`
         }
 
         &::-webkit-scrollbar-thumb {
-          background-color: gray;
+          background-color: #777;
           border-radius: 5px;
         }
       }
@@ -115,10 +119,10 @@ export const Form = styled.form`
         padding: 8px;
         background: linear-gradient(
           135deg,
-          rgba(255, 0, 0, 1),
-          rgba(123, 0, 0, 0.4)
+          ${colors.red},
+          ${colors.gradientRedEnd}
         );
-        box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+        box-shadow: 2px 2px 5px ${colors.blackShadow};
         font-size: 1em;
         font-weight: bold;
         letter-spacing: 1px;

@@ -7,14 +7,14 @@ import {
   FaTimes,
   FaExclamation,
 } from 'react-icons/fa';
-import { formatPrice } from '../../utils/formatPrice';
+import { formatPrice } from '../../utils/scripts/formatPrice';
 import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 
 import {
   MenuContainer,
   PizzaSection,
-  Title,
+  MenuTitle,
   Pizzas,
   Pizza,
   Image,
@@ -48,9 +48,8 @@ export default function Menu() {
     e.currentTarget.remove();
   };
 
-  const handleDelete = async (e, index, pizzaId) => {
+  const handleDelete = async (index, pizzaId) => {
     try {
-      console.log(userToken);
       await axios.delete(`/products/${pizzaId}`, {
         headers: { Authorization: `Bearer ${userToken}` },
       });
@@ -89,7 +88,7 @@ export default function Menu() {
   return (
     <MenuContainer>
       <PizzaSection>
-        <Title>Menu</Title>
+        <MenuTitle>Cardápio</MenuTitle>
         {isAdmin ? (
           <span className="add-pizza">
             <Link to="/product" className="button">
@@ -133,7 +132,7 @@ export default function Menu() {
                       <FaEdit size={12} />
                     </Link>
                     <Link
-                      className="remove-button"
+                      className="delete-button"
                       onClick={handleDeleteAsk}
                       to={`/products/${pizza.id}/delete`}
                     >
@@ -141,7 +140,7 @@ export default function Menu() {
                     </Link>
                     <span
                       className="alert-button"
-                      onClick={(e) => handleDelete(e, index, pizza.id)}
+                      onClick={() => handleDelete(index, pizza.id)}
                     >
                       <FaExclamation size={12} />
                     </span>

@@ -2,10 +2,16 @@ import { useState, useEffect, useRef } from 'react';
 import { useSelector } from 'react-redux';
 import { FaAngleDown } from 'react-icons/fa';
 
-import { MyOrdersContainer, MyOrdersSection, Order, Product } from './styled';
-import { formatDate } from '../../utils/formatDate';
-import { translateStatus } from '../../utils/translateStatus';
-import { formatPrice } from '../../utils/formatPrice';
+import {
+  MyOrdersContainer,
+  MyOrdersSection,
+  MyOrdersTitle,
+  Order,
+  Product,
+} from './styled';
+import { formatDate } from '../../utils/scripts/formatDate';
+import { translateStatus } from '../../utils/scripts/translateStatus';
+import { formatPrice } from '../../utils/scripts/formatPrice';
 import axios from '../../services/axios';
 
 export default function MyOrder() {
@@ -75,7 +81,6 @@ export default function MyOrder() {
           <span className="product-info">
             <span className="product-name">{product.name}</span>
             <span className="product-quantity">
-              {/* {console.log(items[index])} */}
               Quantidade: {items[index].quantity}
             </span>
           </span>
@@ -95,7 +100,7 @@ export default function MyOrder() {
   return (
     <MyOrdersContainer>
       <MyOrdersSection>
-        <span className="title">Meus pedidos</span>
+        <MyOrdersTitle>Meus pedidos</MyOrdersTitle>
         <span>
           {orders.map((order, index) => (
             <Order key={index}>

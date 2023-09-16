@@ -1,10 +1,10 @@
-import { Section, Container } from '../../styles/GlobalStyles';
 import styled from 'styled-components';
+
+import { Section, Container } from '../../styles/GlobalStyles';
+import * as colors from '../../config/colors';
 
 export const HomeContainer = styled(Container)`
   display: grid;
-
-  /* border: 1px solid gray; */
 
   &.grid-template {
     grid-template:
@@ -25,11 +25,11 @@ export const HomeSection = styled(Section)`
   font-size: 0.9rem;
 
   &.message {
-    color: white;
+    color: #fff;
     justify-content: center;
     align-content: center;
     margin: 50px 20px;
-    border-right: 1px solid white;
+    border-right: 1px solid #fff;
 
     span {
       display: flex;
@@ -41,7 +41,7 @@ export const HomeSection = styled(Section)`
       font-weight: bold;
       text-transform: uppercase;
 
-      text-shadow: 2px 2px 20px rgba(0, 0, 0, 0.4);
+      text-shadow: 2px 2px 20px ${colors.blackShadow};
     }
   }
 
@@ -53,7 +53,11 @@ export const HomeSection = styled(Section)`
     border-radius: 20px;
     margin: 20px;
     color: white;
-    background: linear-gradient(135deg, rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.6));
+    background: linear-gradient(
+      135deg,
+      ${colors.gradientBlackStart},
+      ${colors.gradientBlackEnd}
+    );
     letter-spacing: 1px;
 
     .title {
@@ -69,6 +73,8 @@ export const HomeSection = styled(Section)`
     }
 
     .button {
+      background: linear-gradient(135deg, #f00, rgba(255, 0, 0, 0.2));
+      font-weight: bold;
       margin: 10px 0 30px 0;
     }
 

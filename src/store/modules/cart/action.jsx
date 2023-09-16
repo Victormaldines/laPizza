@@ -1,7 +1,6 @@
 import * as types from '../types';
 
 export function addProduct(payload) {
-  console.log('addProd');
   return {
     type: types.ADD_PRODUCT,
     payload,
