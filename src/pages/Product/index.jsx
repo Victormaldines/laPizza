@@ -1,10 +1,10 @@
 import { useState, useEffect } from 'react';
 import { FaUtensils } from 'react-icons/fa';
 import { get } from 'lodash';
-import PropTypes from 'prop-types';
 import { useSelector } from 'react-redux';
 import { isFloat } from 'validator';
 import { toast } from 'react-toastify';
+import PropTypes from 'prop-types';
 
 import { ProductContainer, ProductSection, Form } from './styled';
 import axios from '../../services/axios';
@@ -22,7 +22,6 @@ export default function Product({ match }) {
   useEffect(() => {
     async function getProductData() {
       const { data } = await axios.get(`/products/${id}`);
-
       const Photo = get(data, 'Photos[0].url', '');
 
       setPhoto(Photo);
@@ -34,8 +33,8 @@ export default function Product({ match }) {
   const handleChange = (e) => {
     const file = e.target.files[0];
     const photoUrl = URL.createObjectURL(file);
-    setPhoto(photoUrl);
 
+    setPhoto(photoUrl);
     formData.append('product_id', id);
     formData.append('photo', file);
   };
@@ -64,6 +63,7 @@ export default function Product({ match }) {
         if (formHaveErrors()) return;
 
         const { data } = await axios.post('/products', newProduct);
+
         toast.success('Produto adicionado com sucesso');
         history.push(`/product/${data.id}/edit`);
         return;
@@ -86,9 +86,7 @@ export default function Product({ match }) {
   const areFieldsFilledIn = (fields) => {
     let isFilledIn = true;
     fields.forEach((field) => {
-      if (!field) {
-        isFilledIn = false;
-      }
+      if (!field) isFilledIn = false;
     });
 
     return isFilledIn;

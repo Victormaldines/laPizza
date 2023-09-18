@@ -18,20 +18,31 @@ export default function Login(props) {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    let formErrors = false;
+    if (formHaveErrors()) return;
+
+    dispatch(actions.loginRequest({ user, password, prevPath }));
+  };
+
+  const formHaveErrors = () => {
+    let formErrors = [];
 
     if (user.length < 3 || user.length > 50) {
-      formErrors = true;
-      toast.error('Usuário precisa ter entre 3 e 50 caracteres');
+      formErrors.push('Usuário precisa ter entre 3 e 50 caracteres');
     }
 
     if (password.length < 6 || password.length > 255) {
-      formErrors = true;
-      toast.error('Senha precisa ter entre 6 e 255 caracteres');
+      formErrors.push('Senha precisa ter entre 6 e 255 caracteres');
     }
 
-    if (formErrors) return;
-    dispatch(actions.loginRequest({ user, password, prevPath }));
+    if (formErrors.length > 0) {
+      showErrors(formErrors);
+      return true;
+    }
+    return false;
+  };
+
+  const showErrors = (errors) => {
+    errors.forEach((error) => toast.error(error));
   };
 
   return (
