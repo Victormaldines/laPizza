@@ -9,6 +9,7 @@ import MyInfo from '../pages/MyInfo';
 import MyOrders from '../pages/MyOrders';
 import Product from '../pages/Product';
 import Cart from '../pages/Cart';
+import Page404 from '../pages/Page404';
 
 export default function defaultRoutes() {
   return (
@@ -47,7 +48,7 @@ export default function defaultRoutes() {
         isAdminOnly={false}
         onlyAvailableTo="customer"
       />
-      <MyRoute path="*" component={Home} />
+      <MyRoute path="*" component={Page404} />
     </Switch>
   );
 }

@@ -12,7 +12,6 @@ export default function MyInformations() {
   const dispatch = useDispatch();
 
   const sysUser = useSelector((state) => state.auth);
-  console.log(sysUser);
   const { id, name, user } = useSelector((state) => state.auth.user);
   const { isAdmin } = useSelector((state) => state.auth);
 

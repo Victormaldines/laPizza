@@ -25,8 +25,12 @@ export default function MyOrder() {
 
   useEffect(() => {
     async function getData() {
-      const response = await axios.get(`/customers/${user.id}`);
-      setOrders(response.data['Orders']);
+      try {
+        const response = await axios.get(`/customers/${user.id}`);
+        setOrders(response.data['Orders']);
+      } catch (e) {
+        console.log(e);
+      }
     }
     getData();
   }, [user]);
@@ -39,21 +43,25 @@ export default function MyOrder() {
 
     let hasProducts = false;
     let product;
-    items.forEach(async (item, index) => {
-      if (item.product_id) {
-        hasProducts = true;
-        const { data } = await axios.get(`/products/${item.product_id}`);
-        product = data;
-      } else {
-        product = { name: 'Pizza removida', Photos: [undefined] };
+    try {
+      items.forEach(async (item, index) => {
+        if (item.product_id) {
+          hasProducts = true;
+          const { data } = await axios.get(`/products/${item.product_id}`);
+          product = data;
+        } else {
+          product = { name: 'Pizza removida', Photos: [undefined] };
+        }
+        products.current.push(product);
+        if (items.length - 1 == index) {
+          renderProducts(items, orderIndex);
+        }
+      });
+      if (!hasProducts) {
+        renderProducts();
       }
-      products.current.push(product);
-      if (items.length - 1 == index) {
-        renderProducts(items, orderIndex);
-      }
-    });
-    if (!hasProducts) {
-      renderProducts();
+    } catch (e) {
+      console.log(e);
     }
   };
 

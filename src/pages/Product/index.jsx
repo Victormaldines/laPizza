@@ -4,15 +4,15 @@ import { get } from 'lodash';
 import { useSelector } from 'react-redux';
 import { isFloat } from 'validator';
 import { toast } from 'react-toastify';
-import PropTypes from 'prop-types';
 
 import { ProductContainer, ProductSection, Form } from './styled';
 import axios from '../../services/axios';
 import history from '../../services/history';
 
-export default function Product({ match }) {
+export default function Product(props) {
   const user = useSelector((state) => state.auth);
-  const id = get(match, 'params.id', '');
+  const id = get(props, 'match.params.id', '');
+  const isCreating = get(props, 'location.state.isCreating', false);
 
   const [photo, setPhoto] = useState('');
   const [formData] = useState(new FormData());
@@ -21,12 +21,17 @@ export default function Product({ match }) {
 
   useEffect(() => {
     async function getProductData() {
-      const { data } = await axios.get(`/products/${id}`);
-      const Photo = get(data, 'Photos[0].url', '');
+      try {
+        const { data } = await axios.get(`/products/${id}`);
+        const Photo = get(data, 'Photos[0].url', '');
 
-      setPhoto(Photo);
-      setProduct((product) => ({ ...product, ...data }));
+        setPhoto(Photo);
+        setProduct((product) => ({ ...product, ...data }));
+      } catch (e) {
+        console.log(e);
+      }
     }
+
     getProductData();
   }, [id]);
 
@@ -42,30 +47,33 @@ export default function Product({ match }) {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (
-      !areFieldsFilledIn([
-        newProduct.name,
-        newProduct.ingredients,
-        newProduct.description,
-        newProduct.price,
-      ])
-    ) {
-      showErrors(['Preencha todos os campos']);
-      return;
-    }
-
     try {
       if (id) {
         await axios.put(`/products/${id}`, newProduct, {
           headers: { Authorization: `Bearer ${user.token}` },
         });
       } else {
+        if (
+          !areFieldsFilledIn([
+            newProduct.name,
+            newProduct.ingredients,
+            newProduct.description,
+            newProduct.price,
+          ])
+        ) {
+          showErrors(['Preencha todos os campos']);
+          return;
+        }
+
         if (formHaveErrors()) return;
 
         const { data } = await axios.post('/products', newProduct);
 
         toast.success('Produto adicionado com sucesso');
-        history.push(`/product/${data.id}/edit`);
+        history.push({
+          pathname: `/product/${data.id}/edit`,
+          state: { isCreating: true },
+        });
         return;
       }
 
@@ -130,7 +138,7 @@ export default function Product({ match }) {
   return (
     <ProductContainer>
       <ProductSection>
-        <h1>{id ? 'Atualizar Pizza' : 'Adicionar Pizza'}</h1>
+        <h1>{id && isCreating ? 'Adicionar Pizza' : 'Atualizar Pizza'}</h1>
         <Form onSubmit={handleSubmit}>
           {id ? (
             <span className="image">
@@ -207,7 +215,7 @@ export default function Product({ match }) {
             <span>
               <label htmlFor="price">Preço</label>
               <input
-                type="text"
+                type="number"
                 id="price"
                 min="0"
                 placeholder="preço"
@@ -232,7 +240,3 @@ export default function Product({ match }) {
     </ProductContainer>
   );
 }
-
-Product.propTypes = {
-  match: PropTypes.shape({}).isRequired,
-};

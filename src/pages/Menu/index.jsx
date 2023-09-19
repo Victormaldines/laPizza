@@ -33,8 +33,12 @@ export default function Menu() {
 
   useEffect(() => {
     async function getData() {
-      const response = await axios.get('/products');
-      setPizzas(response.data);
+      try {
+        const response = await axios.get('/products');
+        setPizzas(response.data);
+      } catch (e) {
+        console.log(e);
+      }
     }
     getData();
   }, []);

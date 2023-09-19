@@ -43,15 +43,7 @@ export default function Cart() {
         price: orderPrice,
       });
 
-      console.log(order.data.id);
-
-      products.forEach(async (product) => {
-        await axios.post('/items', {
-          quantity: product.quantity,
-          product_id: product.id,
-          order_id: order.data.id,
-        });
-      });
+      appendProductsToOrder(products, order);
 
       dispatch(actions.removeAllProducts());
       toast.success(
@@ -63,6 +55,16 @@ export default function Cart() {
     } catch (e) {
       console.log(e);
     }
+  };
+
+  const appendProductsToOrder = (products, order) => {
+    products.forEach(async (product) => {
+      await axios.post('/items', {
+        quantity: product.quantity,
+        product_id: product.id,
+        order_id: order.data.id,
+      });
+    });
   };
 
   return (
