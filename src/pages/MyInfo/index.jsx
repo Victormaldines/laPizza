@@ -49,7 +49,6 @@ export default function MyInformations() {
     }
     try {
       if (isAdmin) {
-        console.log(user.token);
         await axios.put(`/users/`, localUser, {
           headers: { Authorization: `Bearer ${user.token}` },
         });
