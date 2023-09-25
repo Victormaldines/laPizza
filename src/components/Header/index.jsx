@@ -31,7 +31,7 @@ export const Header = () => {
         </ul>
         <Link to="/">
           <Logo>
-            <img src="/public/images/lightLaPizza.svg"></img>
+            <img src="/static/images/lightLaPizza.svg"></img>
           </Logo>
         </Link>
         <ul>
