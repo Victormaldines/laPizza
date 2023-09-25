@@ -28,8 +28,6 @@ export default function Menu() {
 
   const isAdmin = useSelector((state) => state.auth.isAdmin);
   const userToken = useSelector((state) => state.auth.token);
-  console.log(userToken);
-
   const [pizzas, setPizzas] = useState([]);
 
   useEffect(() => {
@@ -63,8 +61,7 @@ export default function Menu() {
       newPizzas.splice(index, 1);
       setPizzas(newPizzas);
     } catch (e) {
-      console.log(e);
-      // console.log(e.response.data.errors[0]);
+      console.log(e.response.data.errors[0]);
     }
   };
 
