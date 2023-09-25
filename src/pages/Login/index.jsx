@@ -12,7 +12,7 @@ export default function Login(props) {
 
   const prevPath = get(props, 'location.state.prevPath', '/');
 
-  const [user, setUser] = useState('');
+  const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
   const handleSubmit = (e) => {
@@ -20,13 +20,13 @@ export default function Login(props) {
 
     if (formHaveErrors()) return;
 
-    dispatch(actions.loginRequest({ user, password, prevPath }));
+    dispatch(actions.loginRequest({ username, password, prevPath }));
   };
 
   const formHaveErrors = () => {
     let formErrors = [];
 
-    if (user.length < 3 || user.length > 50) {
+    if (username.length < 3 || username.length > 50) {
       formErrors.push('Usuário precisa ter entre 3 e 50 caracteres');
     }
 
@@ -54,8 +54,8 @@ export default function Login(props) {
             <label htmlFor="user">Usuário</label>
             <input
               type="text"
-              value={user}
-              onChange={(e) => setUser(e.target.value)}
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
               id="user"
               placeholder="insira seu usuário"
             />

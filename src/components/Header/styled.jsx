@@ -32,10 +32,6 @@ export const Nav = styled.nav`
       letter-spacing: 1.5px;
     }
   }
-
-  & h1 {
-    /* border: 1px solid red; */
-  }
 `;
 
 export const Logo = styled.span`

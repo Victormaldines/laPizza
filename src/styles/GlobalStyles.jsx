@@ -19,7 +19,7 @@ export default createGlobalStyle`
     font-family: sans-serif;
     color: white;
     background: black;
-    background: url("/src/utils/images/pizza.png");
+    background: url("/public/images/pizza.png");
     background-attachment: fixed;
     background-position: center;
     background-size: cover;

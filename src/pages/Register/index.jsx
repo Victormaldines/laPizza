@@ -14,7 +14,7 @@ export default function Register() {
   const dispatch = useDispatch();
 
   const [name, setName] = useState('');
-  const [user, setUser] = useState('');
+  const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
   const handleSubmit = async (e) => {
@@ -23,7 +23,7 @@ export default function Register() {
     if (formHaveErrors()) return;
 
     try {
-      dispatch(actions.registerRequest({ name, user, password }));
+      dispatch(actions.registerRequest({ name, username, password }));
     } catch (e) {
       console.log(e);
     }
@@ -36,7 +36,7 @@ export default function Register() {
       formErrors.push('Nome precisa ter entre 3 e 255 caracteres');
     }
 
-    if (user.length < 3 || user.length > 50) {
+    if (username.length < 3 || username.length > 50) {
       formErrors.push('Usuário precisa ter entre 3 e 50 caracteres');
     }
 
@@ -75,9 +75,9 @@ export default function Register() {
             <label>Usuário </label>
             <input
               type="text"
-              id="user"
-              className="user"
-              onChange={(e) => setUser(e.target.value)}
+              id="username"
+              className="username"
+              onChange={(e) => setUsername(e.target.value)}
             />
           </span>
           <span>

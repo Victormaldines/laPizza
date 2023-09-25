@@ -11,19 +11,19 @@ import history from '../../services/history';
 export default function MyInformations() {
   const dispatch = useDispatch();
 
-  const sysUser = useSelector((state) => state.auth);
-  const { id, name, user } = useSelector((state) => state.auth.user);
+  const user = useSelector((state) => state.auth);
+  const { id, name, username } = useSelector((state) => state.auth.user);
   const { isAdmin } = useSelector((state) => state.auth);
 
   const [isEditing, setIsEditing] = useState(false);
-  const [localUser] = useState({ name, user });
+  const [localUser] = useState({ name, username });
 
   function handleNameChange(name) {
     localUser.name = name;
   }
 
-  function handleUserChange(user) {
-    localUser.user = user;
+  function handleUserChange(username) {
+    localUser.username = username;
   }
 
   function handlePasswordChange(password) {
@@ -41,7 +41,7 @@ export default function MyInformations() {
   async function handleConfirmEdit() {
     if (
       localUser.name === name &&
-      localUser.user === user &&
+      localUser.username === username &&
       !localUser.password
     ) {
       handleCancelEdit();
@@ -49,8 +49,9 @@ export default function MyInformations() {
     }
     try {
       if (isAdmin) {
+        console.log(user.token);
         await axios.put(`/users/`, localUser, {
-          headers: { Authorization: `Bearer ${sysUser.token}` },
+          headers: { Authorization: `Bearer ${user.token}` },
         });
       } else {
         await axios.put(`/customers/${id}`, localUser);
@@ -100,10 +101,10 @@ export default function MyInformations() {
                 <input
                   type="text"
                   onChange={(e) => handleUserChange(e.target.value)}
-                  defaultValue={localUser.user}
+                  defaultValue={localUser.username}
                 />
               ) : (
-                localUser.user
+                localUser.username
               )}
             </span>
           </span>

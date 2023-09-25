@@ -77,7 +77,7 @@ export default function Cart() {
               <img
                 crossOrigin="true"
                 src={product.photo ? product.photo : ''}
-                alt="image"
+                alt={product.name}
               />
             </span>
             <span className="product-info">
