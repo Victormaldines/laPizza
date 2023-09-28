@@ -26,44 +26,44 @@ _Tela inicial com nenhum usuário logado. É possível acessar o cardápio livre
 _Tela de login com opção direta para o registro do cliente_
 
 ### Registro
-![tela_register](https://i.ibb.co/T2LDDNv/tela-register.png)
+![a](https://i.ibb.co/T2LDDNv/telaa-register.png)
 _Tela de registro exclusivo para clientes_
 
 ### Home (cliente)
-![tela_customer_home_logged](https://i.ibb.co/J29YbW1/tela-customer-home-logged.png)
+![tela_customer_home_logged](https://i.ibb.co/J29YbW1/telaa-customer-home-logged.png)
 _Tela inicial com cliente logado_
 
 
 ### Minhas informações (cliente)
-![tela_customer_info](https://i.ibb.co/jv5xztx/tela-customer-info.png)
+![tela_customer_info](https://i.ibb.co/jv5xztx/telaa-customer-info.png)
 _Tela de informações do cliente com possibilidade de alteração de cada informação_
 
 ### Cardápio (cliente)
-![tela_customer_menu](https://i.ibb.co/xhdFWCS/tela-customer-menu.png)
+![tela_customer_menu](https://i.ibb.co/xhdFWCS/telaa-customer-menu.png)
 _Tela do cadápio com opção de adição e remoção de cada produto ao carrinho_
 
 ### Carrinho (cliente)
-![tela_customer_cart](https://i.ibb.co/MkkkN9d/tela-customer-cart.png)
+![tela_customer_cart](https://i.ibb.co/MkkkN9d/tela-customer-caart.png)
 _Tela do carrinho com revisão das pizzas adicionadas pelo cliente e criação do pedido_
 
 ### Pedidos (cliente)
-![tela_customer_orders](https://i.ibb.co/t4nbYNZ/tela-customer-orders.png)
+![tela_customer_orders](https://i.ibb.co/t4nbYNZ/tela-customer-orderss.png)
 _Tela de pedidos com revisão dos pedidos criados pelo cliente incluindo quantidade de itens, data, status e preço final do pedido_
 
 ### Cardápio (administrador)
-![tela_admin_menu](https://i.ibb.co/r6gdqfJ/tela-admin-menu.png)
+![tela_admin_menu](https://i.ibb.co/r6gdqfJ/tela-admin-menuu.png)
 _Tela do cardápio com opção de criação, edição e remoção de produtos_
 
 ### Produto - Criação (administrador)
-![tela_admin_product_create](https://i.ibb.co/LZSjTdL/tela-admin-product-create.png)
+![tela_admin_product_create](https://i.ibb.co/LZSjTdL/tela-admin-product-createe.png)
 _Tela de criação de produto com possibilidade de adição da foto diretamente no formulário (caso não seja adicionada nenhuma, um placeholder é mantido)_ 
 
 #### Produto - Criação - Foto (administrador)
-![tela_admin_product_create2](https://i.ibb.co/MGSm2nX/tela-admin-product-create2.png)
+![tela_admin_product_create2](https://i.ibb.co/MGSm2nX/tela-admin-product-createe2.png)
 _Feature de adição de foto suportando arquivos .png e .jpg_
 
 ### Produto - Atualização (administrador)
-![tela_admin_product_update](https://i.ibb.co/wsgZQhp/tela-admin-product-update.png)
+![tela_admin_product_update](https://i.ibb.co/wsgZQhp/tela-admin-product-updatee.png)
 _Tela de atualização de informações sobre o produto, tais como nome, ingredientes, descrição, preço e foto_
 
 
