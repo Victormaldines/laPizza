@@ -22,7 +22,7 @@ export default function Home() {
         <span className="title">Localização</span>
         <section className="location">
           <section className="address">
-            <span className="emphasis">Hollownest</span>
+            <span className="emphasis">Hallownest</span>
             <span>Palácio Branco, 101 - HK</span>
           </section>
           <span className="telephone">00 1234-5678</span>
